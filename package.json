@@ -1,9 +1,10 @@
 {
+  "private": true,
   "name": "webpacktemplate",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "webpack serve --open --config ./dev.config.js",
+    "dev": "webpack serve --open --node-env=development --config ./dev.config.js",
     "build": "webpack --config ./build.config.js"
   },
   "browserslist": [
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
+    "@squoosh/lib": "^0.4.0",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
@@ -31,6 +33,9 @@
     "cssnano": "^5.1.13",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "image-minimizer-webpack-plugin": "^3.6.1",
+    "imagemin": "^8.0.1",
+    "imagemin-svgo": "^10.0.1",
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^7.0.3",
     "path": "^0.12.7",

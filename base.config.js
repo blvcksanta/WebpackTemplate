@@ -4,7 +4,8 @@ const htmlPlugin = require('html-webpack-plugin');
 const copyPlugin = require('copy-webpack-plugin');
 
 
-const devMode = process.env.npm_lifecycle_event !== 'build';
+const devMode = process.env.NODE_ENV === 'development';
+
 
 const PATHS = {
   src: path.join(__dirname, './src'),
