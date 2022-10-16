@@ -1,46 +1,58 @@
 const {merge} = require('webpack-merge');
 const baseConfig = require('./base.config.js');
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const copyPlugin = require('copy-webpack-plugin');
-
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const buildConfig = merge(baseConfig, {
   mode: 'production',
-  module: {
-    rules: [
-      {
-        test: /\.(jpg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'assets/img/',
-        }
-      },
-    ]
-  },
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: false,
+        deleteOriginalAssets: false,
         minimizer: {
-          implementation: ImageMinimizerPlugin.squooshMinify,
+          implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
-            encodeOptions: {
-              mozjpeg: {
-                quality: 70,
-              },
-            },
+            plugins: [
+              ['mozjpeg', {quality: 50, progressive: true}],
+              ['pngquant', {quality: [0.5, 0.5]}],
+              ['svgo',
+                {
+                  multipass: true,
+                  js2svg: {
+                    pretty: false,
+                    indent: 0,
+                  },
+                  plugins: [
+                    'sortAttrs',
+                    'removeDimensions',
+                    'removeTitle',
+                    'removeMetadata',
+                    'convertPathData',
+                    {
+                      name: 'removeViewBox',
+                      active: false,
+                    },
+                    {
+                      name: 'cleanupIDs',
+                      params: {
+                        minify: true,
+                      }
+                    },
+                  ],
+                },
+              ],
+            ],
           },
         },
         generator: [
           {
-            type: "asset",
-            implementation: ImageMinimizerPlugin.squooshGenerate,
+            type: 'asset',
+            implementation: ImageMinimizerPlugin.imageminGenerate,
             options: {
-              encodeOptions: {
-                webp: {
-                  quality: 60,
-                },
-              },
+              plugins: [
+                ['webp', {quality: 50}],
+              ],
             },
           },
         ],
@@ -48,11 +60,7 @@ const buildConfig = merge(baseConfig, {
     ],
   },
   plugins: [
-    new copyPlugin({
-      patterns: [
-        {from: `${baseConfig.externals.paths.src}/pictures/img/`, to: `${baseConfig.externals.paths.assets}/img/`},
-      ],
-    }),
+
   ]
 });
 

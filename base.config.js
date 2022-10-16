@@ -26,6 +26,14 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(jpg)$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     name: '[name].[ext]',
+      //     outputPath: 'assets/img/',
+      //   }
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -78,6 +86,8 @@ module.exports = {
     new copyPlugin({
       patterns: [
         {from: `${PATHS.src}/static/`, to: `${PATHS.dist}/`},
+        {from: `${PATHS.src}/pictures/img/`, to: `${PATHS.assets}/img/`},
+        {from: `${PATHS.src}/pictures/svg/icon/`, to: `${PATHS.assets}/icon/`},
       ],
     }),
     new htmlPlugin({
