@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  width: 200px;
+  height: 200px;
+  background-image: url('../pictures/svg/icon/icon-1.svg');
+  background-color: greenyellow;
+  background-size: cover;
+}
