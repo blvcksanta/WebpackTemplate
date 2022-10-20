@@ -7,7 +7,7 @@ const buildConfig = merge(baseConfig, {
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
-        test: /\.(jpe?g|png|svg)$/,
+        test: /\.(jpe?g|png|svg|webp)$/,
         loader: false,
         deleteOriginalAssets: false,
         minimizer: {

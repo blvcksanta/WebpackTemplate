@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../fonts/Helvetica.woff');
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Helvetica' sans-serif;
+}
+
+.icon {
+  width: 200px;
+  height: 200px;
+  background-image: url('../pictures/img/index/bad.jpg');
+  background-color: greenyellow;
+  background-size: cover;
+}

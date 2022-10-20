@@ -27,7 +27,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(jpe?g|png)$/,
+        test: /\.(jpe?g|png|webp)$/,
         type: 'asset/resource',
         generator: {
           filename: `${PATHS.assets}/img/[name][ext]`
@@ -45,6 +45,13 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: './[name][ext]',
+        }
+      },
+      {
+        test: /\.(woff(2)?|ttf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: `${PATHS.assets}/fonts/[name][ext]`
         }
       },
       {
